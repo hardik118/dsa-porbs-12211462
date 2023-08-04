@@ -12,16 +12,18 @@ void display(struct node *head){
 	}
 	while(ptr!=head);
 }
- struct node *insertat1(struct node *head,int data){
+ struct node *insertatindex(struct node *head,int data,int index){
  	struct node *ptr =(struct node*)malloc(sizeof(struct node));
  	struct node *p= head->next;
  	ptr->data=data;
- 	while(p->next!=head){
+ 	int i=0;
+ 	while(i!=index-1){
  		p=p->next;
+ 		i++;
 	 }
+	 ptr->next=p->next;
 	 p->next=ptr;
-	 ptr->next=head;
-	 head= ptr;
+	
 	 return head;
  }
  
@@ -49,7 +51,7 @@ fifth->data= 11;
 fifth->next= head;
 printf("displaying ");
 display(head);
-head=insertat1(head,90);
+head=insertatindex(head,4,3);
 printf("edited list\n");
 display(head);
 return 0;

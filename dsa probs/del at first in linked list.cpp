@@ -4,51 +4,46 @@ struct node {
 	int data ;
 	struct node *next;
 };
-void display(struct node *ptr){
-	while(ptr!=NULL){
+void display(struct node *head){
+	struct node *ptr= head;
+	while(ptr!=head){
 		printf("element: %d\n",ptr->data);
 		ptr= ptr->next;
 	}
 }
-struct node * delatlast(struct node *head){
-	struct node *ptr = head;
-	struct node *p= head->next;
-	while(p->next!=NULL){
-		ptr= ptr->next;
+struct node * delatfirst(struct node *head){
+
+	struct node *p = head;
+	while(p->next!=head){
 		p=p->next;
 	}
-	ptr->next=NULL; 
+	head= head->next;
+	p->next=head->next;
 	free(p);
-	
 	return head;
-	
 }
 int main(){
 	struct node   *head;
 	struct node   *second;
 	struct node  *third;
-	struct node  *fourth;
-	struct node  *fifth;
  
  head= (struct node*)malloc(sizeof(struct  node));
 second = (struct node*)malloc(sizeof(struct node));
  third= (struct node*)malloc(sizeof(struct node));
- fourth= (struct node*)malloc(sizeof(struct node));
- fifth= (struct node*)malloc(sizeof(struct node)); 
+  
 head->data= 7;
 head->next= second;
 second->data=8;
 second->next= third;
 third->data= 9;
-third->next= fourth;
-third->next= fifth;
-fifth->data= 11;
-fifth->next= NULL;
+third->next= head;
 printf("done\n");
+
+
+ head=delatfirst(head);
+printf("afterchanges\n");
 display(head);
- head=delatlast(head);
- printf("done\n");
- display(head);
+
 return  0;
 	
 }
