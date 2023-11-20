@@ -10,8 +10,9 @@ class weight{
 		cout<<"weight is in kg "<<kg<<endl;
 				
 		}
-		void operator ++(){
-			++kg;
+		weight  operator ++(){
+			weight temp ;
+			temp.kg=++kg;
 			
 		}
 		void operator ++(int ){
